@@ -7,6 +7,8 @@ import java.util.Set;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -44,6 +46,9 @@ public class Usuario {
 		@Column(name="updatedat")
 		@UpdateTimestamp
 		private LocalDateTime updatedAt;
+		
+		@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
+		private Set<UsuarioRol> userRoles = new HashSet<>();
 
 	//	@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
 	//	private Set<UserRole> userRoles = new HashSet<>();
