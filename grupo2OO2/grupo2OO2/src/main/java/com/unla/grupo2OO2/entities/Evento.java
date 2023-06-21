@@ -8,9 +8,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +28,9 @@ public class Evento {
 	
 	private String descripcion;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	// normalmente nullable es igual a false, en este caso se deja como true porque el ejemplo es simple
+	@JoinColumn(name="dispositivo_id", nullable=false)
 	private Dispositivo dispositivo;
 	
 	private LocalDate dia;
@@ -50,6 +56,4 @@ public class Evento {
 		this.horaHasta = horaHasta;
 	}
 	
-	
-
 }

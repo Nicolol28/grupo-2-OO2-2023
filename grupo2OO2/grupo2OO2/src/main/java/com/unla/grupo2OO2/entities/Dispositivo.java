@@ -18,9 +18,7 @@ import lombok.Setter;
 @Entity
 @Getter @Setter @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-
 public class Dispositivo {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -41,11 +39,4 @@ public class Dispositivo {
 		this.nombre = nombre;
 		this.activo = activo;
 	}
-
-
-	
-	
-	
-	
-
 }
