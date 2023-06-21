@@ -1,5 +1,4 @@
 package com.unla.grupo2OO2.entities;
-
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,9 +16,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-
 public class EstacionamientoInteligente extends Dispositivo{
-	
 	private int nroEstacionamiento;
 	
 	private boolean ocupado;
@@ -38,6 +35,4 @@ public class EstacionamientoInteligente extends Dispositivo{
 		this.ocupado = ocupado;
 		this.horaDeOcupacion = horaDeOcupacion;
 	}
-	
-	
 }
