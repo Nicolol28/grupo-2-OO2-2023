@@ -1,14 +1,9 @@
 com\unla\grupo2OO2\helpers\ViewRouteHelper.class
-com\unla\grupo2OO2\entities\Usuario.class
 com\unla\grupo2OO2\entities\Administrador.class
 com\unla\grupo2OO2\entities\EstacionamientoInteligente.class
+com\unla\grupo2OO2\entities\Evento.class
+com\unla\grupo2OO2\entities\Persona.class
 com\unla\grupo2OO2\entities\Auditor.class
 com\unla\grupo2OO2\Grupo2Oo2Application.class
 com\unla\grupo2OO2\entities\Dispositivo.class
 com\unla\grupo2OO2\controllers\UserController.class
-com\unla\grupo2OO2\entities\UsuarioRol.class
-com\unla\grupo2OO2\services\implementation\DispositivoServices.class
-com\unla\grupo2OO2\services\IDispositivoService.class
-com\unla\grupo2OO2\entities\Evento.class
-com\unla\grupo2OO2\repositories\IDispositivoRepository.class
-com\unla\grupo2OO2\entities\Persona.class
