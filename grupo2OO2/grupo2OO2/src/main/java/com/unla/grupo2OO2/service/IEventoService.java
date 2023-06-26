@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.unla.grupo2OO2.entities.Dispositivo;
 import com.unla.grupo2OO2.entities.Evento;
 
-@Service("eventoService")
+
 public interface IEventoService {
 	public List<Evento> getAll();
 

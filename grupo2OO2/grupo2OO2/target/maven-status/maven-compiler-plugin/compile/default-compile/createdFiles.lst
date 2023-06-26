@@ -1,9 +1,0 @@
-com\unla\grupo2OO2\helpers\ViewRouteHelper.class
-com\unla\grupo2OO2\entities\Administrador.class
-com\unla\grupo2OO2\entities\EstacionamientoInteligente.class
-com\unla\grupo2OO2\entities\Evento.class
-com\unla\grupo2OO2\entities\Persona.class
-com\unla\grupo2OO2\entities\Auditor.class
-com\unla\grupo2OO2\Grupo2Oo2Application.class
-com\unla\grupo2OO2\entities\Dispositivo.class
-com\unla\grupo2OO2\controllers\UserController.class

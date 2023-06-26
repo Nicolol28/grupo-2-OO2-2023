@@ -2,7 +2,10 @@ package com.unla.grupo2OO2.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.unla.grupo2OO2.entities.Dispositivo;
+
 
 public interface IDispositivoService {
 	public List<Dispositivo> getAll();

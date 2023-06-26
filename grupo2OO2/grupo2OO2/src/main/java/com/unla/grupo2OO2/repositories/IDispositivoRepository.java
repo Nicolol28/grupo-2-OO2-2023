@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.unla.grupo2OO2.entities.Dispositivo;
 
-@Repository("dispositivoRepositori")
+@Repository("dispositivoRepository")
 public interface IDispositivoRepository extends JpaRepository<Dispositivo, Serializable>{
 	public abstract Dispositivo findById(int id);
 
