@@ -31,6 +31,7 @@ import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
 import com.unla.grupo2OO2.helpers.ViewRouteHelper;
 import com.unla.grupo2OO2.service.IDispositivoService;
 import com.unla.grupo2OO2.service.IEstacionamientoService;
+import com.unla.grupo2OO2.service.IEventoService;
 import com.unla.grupo2OO2.service.implementation.EstacionamientoService;
 
 import org.modelmapper.ModelMapper;
@@ -45,15 +46,13 @@ public class EstacionamientoController {
 	@Qualifier("estacionamientoService")
 	private IEstacionamientoService estacionamientoService;
 	
-	
-	
+	@Autowired
+	@Qualifier("eventoService")
+	private IEventoService eventoService;
+
 	@GetMapping("/EstacionamientoInteligente")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView(ViewRouteHelper.ESTACIONAMIENYO_INDEX);
-		
-		//model.addObject("estacionamientos", estacionamientoService.getAll());
-		
-
 		return model;
 
 	}
@@ -62,8 +61,9 @@ public class EstacionamientoController {
 	public ModelAndView estacionamiento() {
 		ModelAndView model = new ModelAndView(ViewRouteHelper.ESTACIONAMIENTO_VIEW);
 		
-		
 		model.addObject("estacionamientos", estacionamientoService.getAll());
+		model.addObject("eventos", eventoService.getEventosEstacionamiento());
+		
 		return model;
 	}
 	
@@ -80,7 +80,6 @@ public class EstacionamientoController {
 		estacionamientoService.insertOrUpdate(estacionamiento);
 		
 		return new RedirectView(ViewRouteHelper.ESTACIONAMIENTO);
-		
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -88,15 +87,14 @@ public class EstacionamientoController {
     public ModelAndView agregarEvento(){
        ModelAndView mAV = new ModelAndView("Eventos/agregarEvento");
        Evento evento = new Evento();
-       
+       mAV.addObject("estacionamientos", estacionamientoService.getAll());
        mAV.addObject("evento", evento);
        return mAV;
     }
-  
-    
+	
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/agregarEvento")
-    public String agregarEvento(@RequestParam("dispositivoId") int dispositivoId,
+    public RedirectView agregarEvento(@RequestParam("dispositivoId") int dispositivoId,
     		@RequestParam("fecha") LocalDate fecha,
     		@RequestParam("horaDesde") LocalTime horaDesde,
     		@RequestParam("horaHasta") LocalTime horaHasta,
@@ -105,6 +103,6 @@ public class EstacionamientoController {
     	if (dispositivo != null) {      
     		estacionamientoService.agregarEvento(dispositivo, fecha, horaDesde, horaHasta, descripcion);
     	}
-    	return ViewRouteHelper.ESTACIONAMIENTO_VIEW;
+    	return new RedirectView(ViewRouteHelper.ESTACIONAMIENTO);
     }
 }

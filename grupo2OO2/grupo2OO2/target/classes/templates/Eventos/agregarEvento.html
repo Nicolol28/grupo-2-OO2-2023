@@ -11,11 +11,47 @@
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-
 <body class="bg-primary">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
+                <div class="container-fluid px-4"></div>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Tabla de Sensor de Estacionamientos
+                        </div>
+                        <div class="card-body">
+                            <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                                <div class="datatable-container">
+                                    <table id="datatablesSimple" class="datatable-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="form-floating mb-3 mb-md-0">ID</th>
+                                                <th class="form-floating mb-3 mb-md-0">Nombre</th>
+                                                <th class="form-floating mb-3 mb-md-0">Activo</th>
+                                                <th class="form-floating mb-3 mb-md-0">Ocupado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="estacionamiento : ${estacionamientos}">
+                                                <td><span th:text="${estacionamiento.id}" /></td>
+                                                <td><span th:text="${estacionamiento.nombre}" /></td>
+                                                <td><span th:text="${estacionamiento.activo}" /></td>
+                                                <td><span th:text="${estacionamiento.ocupado}" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="mt-auto d-md-inline-block">
+                                        <div class="d-grid">
+                                            <a class="btn btn-primary btn-block" href="EstacionamientoInteligente">Home Estacionamiento</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-7">
@@ -29,7 +65,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-floating mb-3">
                                                     <input class="form-control" type="number" id="dispositivoId"
-                                                        placeholder="id del dispositivo Estacionamiento" required>
+                                                    name="dispositivoId" required>
                                                     <label for="dispositivoId">ID:</label>
                                                 </div>
                                             </div>
@@ -38,7 +74,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-floating mb-3">
                                                     <input class="form-control" type="date" id="fecha"
-                                                        placeholder="fecha" required>
+                                                        name="fecha" required>
                                                     <label for="fecha">Fecha:</label>
                                                 </div>
                                             </div>
@@ -47,7 +83,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-floating mb-3">
                                                     <input class="form-control" type="time" id="horaDesde"
-                                                        placeholder="Hora inicio" required>
+                                                        name="horaDesde" required>
                                                     <label for="horaDesde">Hora Inicio:</label>
                                                 </div>
                                             </div>
@@ -56,7 +92,7 @@
                                             <div class="col-md-5">
                                                 <div class="form-floating mb-3">
                                                     <input class="form-control" type="time" id="horaHasta"
-                                                        placeholder="Hora Fin" required>
+                                                        name="horaHasta" required>
                                                     <label for="horaHasta">Hora Fin:</label>
                                                 </div>
                                             </div>
@@ -65,12 +101,12 @@
                                             <div class="col-md-5">
                                                 <div class="form-floating mb-3">
                                                     <input class="form-control" type="text" id="descripcion"
-                                                        placeholder="Descripcion" required>
+                                                        name="descripcion" required>
                                                     <label for="descripcion">Descripcion:</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mt-4 mb-0">
+                                        <div class="mt-auto d-md-inline-block">
                                             <div class="d-grid">
                                                 <input type="submit"/>
                                             </div>

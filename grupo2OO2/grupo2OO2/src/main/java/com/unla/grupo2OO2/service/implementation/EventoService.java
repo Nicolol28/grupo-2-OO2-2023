@@ -2,17 +2,19 @@ package com.unla.grupo2OO2.service.implementation;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.grupo2OO2.entities.Dispositivo;
+import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
 import com.unla.grupo2OO2.entities.Evento;
 import com.unla.grupo2OO2.repositories.IEventoRepository;
 import com.unla.grupo2OO2.service.IEventoService;
 
-@Service
+@Service("eventoService")
 public class EventoService implements IEventoService{
 	
 	@Autowired
@@ -57,6 +59,21 @@ public class EventoService implements IEventoService{
 		return eventoRepository.findByIdEvento(id);
 	}
 
-
+	 @Override
+	 public List<Evento> getEventosEstacionamiento() {
+		 List<Evento> eventos = eventoRepository.findAll();
+		 List<Evento> eventosEst = new ArrayList<>();
+		 for(int i=0;i<eventos.size();i++) {
+			 if(eventos.get(i).getDispositivo() instanceof EstacionamientoInteligente) {
+				 eventosEst.add(eventos.get(i));
+			 }
+		 }
+		 return eventosEst;
+	 }
+	 
+	 @Override
+	 public List<Evento> getByIdDispositivo(int id) {
+		 return eventoRepository.findByIdDispositivo(id);
+	 }
 
 }

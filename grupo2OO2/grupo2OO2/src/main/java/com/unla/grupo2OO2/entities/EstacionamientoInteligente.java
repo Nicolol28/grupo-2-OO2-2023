@@ -25,27 +25,11 @@ public class EstacionamientoInteligente extends Dispositivo{
 	private int nroEstacionamiento;
 	
 	private boolean ocupado;
-	
-	private LocalDateTime horaDeOcupacion;
-	
-	@CreationTimestamp
-	private LocalDateTime createdAt;
-
-	@UpdateTimestamp
-	private LocalDateTime updatedAt;
 
 	public EstacionamientoInteligente(int id, String nombre, boolean activo, int nroEstacionamiento, boolean ocupado, LocalDateTime horaDeOcupacion) {
 		super(id, nombre, activo);
 		this.nroEstacionamiento = nroEstacionamiento;
 		this.ocupado = ocupado;
-		this.horaDeOcupacion = horaDeOcupacion;
-	}
-
-	@Override
-	public String toString() {
-		return "EstacionamientoInteligente [nroEstacionamiento=" + nroEstacionamiento + ", ocupado=" + ocupado
-				+ ", horaDeOcupacion=" + horaDeOcupacion + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
-				+ "]";
 	}
 	
 }

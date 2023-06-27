@@ -41,12 +41,66 @@
 												</tr>
 											</tbody>
 										</table>
-										<div class="mt-auto d-md-inline-block">
-											<div class="d-grid">
-												<a class="btn btn-primary btn-block" href="EstacionamientoInteligente">Home Estacionamiento</a>
-											</div>
-										</div>
 									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i>
+							Tabla de los Eventos de Sensor de Estacionamientos
+						</div>
+						<div class="datatable-container">
+							<table id="datatablesSimple" class="datatable-table">
+								<thead>
+									<tr>
+										<th class="form-floating mb-3 mb-md-0">ID</th>
+										<th class="form-floating mb-3 mb-md-0">Descripcion</th>
+										<th class="form-floating mb-3 mb-md-0">Dia</th>
+										<th class="form-floating mb-3 mb-md-0">Hora Desde</th>
+										<th class="form-floating mb-3 mb-md-0">Hora Hasta</th>
+										<th class="form-floating mb-3 mb-md-0">ID del EstacionamientoInteligente</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="estacionamiento : ${estacionamientos}">
+										<td>
+											<ul>
+												<li th:each="evento : ${estacionamiento.eventos}" th:utext="${evento.idEvento}"></li>
+											</ul>
+										</td>
+										<td>
+											<ul>
+												<li th:each="evento : ${estacionamiento.eventos}" th:utext="${evento.descripcion}"></li>
+											</ul>
+										</td>
+										<td>
+											<ul>
+												<li th:each="evento : ${estacionamiento.eventos}" th:utext="${evento.dia}"></li>
+											</ul>
+										</td>
+										<td>
+											<ul>
+												<li th:each="evento : ${estacionamiento.eventos}" th:utext="${evento.horaDesde}"></li>
+											</ul>
+										</td>
+										<td>
+											<ul>
+												<li th:each="evento : ${estacionamiento.eventos}" th:utext="${evento.horaHasta}"></li>
+											</ul>
+										</td>
+										<td>
+											<ul>
+												<li th:each="evento : ${estacionamiento.eventos}" th:utext="${evento.dispositivo.id}"></li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="mt-auto d-md-inline-block">
+								<div class="d-grid">
+									<a class="btn btn-primary btn-block" href="EstacionamientoInteligente">Home Estacionamiento</a>
 								</div>
 							</div>
 						</div>

@@ -19,4 +19,7 @@ public interface IEventoService {
 	public Evento findByIdEvento(int id);
 
 	Evento insertOrUpdate(Evento evento);
+	
+	public List<Evento> getEventosEstacionamiento();
+	public List<Evento> getByIdDispositivo(int id);
 }

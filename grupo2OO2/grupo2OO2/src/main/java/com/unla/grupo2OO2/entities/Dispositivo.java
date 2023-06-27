@@ -31,7 +31,7 @@ public class Dispositivo {
 	private String nombre;
 	
 	private boolean activo;
-	
+
 	//@OneToMany(mappedBy = "dispositivo",  cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	//private List<Medicion> mediciones = new ArrayList<>();
 
@@ -57,10 +57,5 @@ public class Dispositivo {
 		this.activo = activo;
 	}
 
-	@Override
-	public String toString() {
-		return "Dispositivo [id=" + id + ", nombre=" + nombre + ", activo=" + activo + ", createdAt=" + createdAt
-				+ ", updatedAt=" + updatedAt + "]";
-	}
 	
 }

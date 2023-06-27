@@ -17,5 +17,5 @@ public class ViewRouteHelper {
 
 	/**** Redirects ****/
 	public final static String ROUTE = "/index";
-	public final static String ESTACIONAMIENTO="/index";
+	public final static String ESTACIONAMIENTO="/EstacionamientoInteligente";
 }
