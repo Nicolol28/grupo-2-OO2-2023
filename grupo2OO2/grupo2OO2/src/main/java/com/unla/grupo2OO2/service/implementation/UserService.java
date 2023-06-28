@@ -1,4 +1,4 @@
-package com.unla.grupo2OO2.services.implementation;
+package com.unla.grupo2OO2.service.implementation;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import com.unla.grupo2OO2.entities.UserRole;
 import com.unla.grupo2OO2.repositories.IUserRepository;
 
-@Service("userService")
+@Service
 public class UserService implements UserDetailsService {
 
 	@Autowired

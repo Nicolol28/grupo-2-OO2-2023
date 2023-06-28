@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.unla.grupo2OO2.services.implementation.UserService;
+import com.unla.grupo2OO2.service.implementation.UserService;
 
 @Configuration
 @EnableWebSecurity

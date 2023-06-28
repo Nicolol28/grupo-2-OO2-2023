@@ -6,23 +6,16 @@ public class ViewRouteHelper {
 	public final static String INDEX = "/index";
 	public final static String HELLO = "home/hello";
 
-	//DEGREE
-	public final static String DEGREE_INDEX = "degree/index";
-	public final static String DEGREE_FORM = "degree/form";
-	public final static String DEGREE_NEW = "degree/new";
-
-	//PERSON
-	public final static String PERSON_INDEX = "person/index";
-	public final static String PERSON_NEW = "person/new";
-	public final static String PERSON_UPDATE = "person/update";
-	public final static String PERSON_PARTIAL_VIEW = "person/partialPersonView";
+	//dispositivos
+	public final static String ESTACIONAMIENYO_INDEX="estacionamiento/index";
+	public final static String ESTACIONAMIENTO_VIEW ="estacionamiento/Estacionamiento";
+	public final static String ESTACIONAMIENTO_ADD="estacionamiento/agregarEstacionamiento";
 
 	//USER
-	public final static String USER_LOGIN = "loginn";
-	public final static String USER_LOGOUT = "loginn";
+	public final static String USER_LOGIN = "login";
+	public final static String USER_LOGOUT = "logout";
 
 	/**** Redirects ****/
 	public final static String ROUTE = "/index";
-	public final static String DEGREE_ROOT = "/degrees/";
-	public final static String PERSON_ROOT = "/person";
+	public final static String ESTACIONAMIENTO="/EstacionamientoInteligente";
 }
