@@ -53,6 +53,7 @@ public class DispositivoController {
 			}
 		}
 		
+		
 		model.addObject("dispositivos", dis);
 		return model;
 	}
