@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.unla.grupo2OO2.Grupo2Oo2ApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.516 s - in com.unla.grupo2OO2.Grupo2Oo2ApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.601 s - in com.unla.grupo2OO2.Grupo2Oo2ApplicationTests

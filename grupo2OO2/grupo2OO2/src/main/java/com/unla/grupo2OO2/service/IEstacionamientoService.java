@@ -15,8 +15,6 @@ public interface IEstacionamientoService {
 	public EstacionamientoInteligente insertOrUpdate(EstacionamientoInteligente estacionamiento);
 
 	public boolean remove(int id);
-
     
     public EstacionamientoInteligente agregarEvento(EstacionamientoInteligente dispositivo, LocalDate fecha, LocalTime horaDesde, LocalTime horaHasta, String descripcion);
-
 }
