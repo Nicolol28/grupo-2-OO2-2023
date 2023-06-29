@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.grupo2OO2.entities.Dispositivo;
+import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
 import com.unla.grupo2OO2.repositories.IDispositivoRepository;
 import com.unla.grupo2OO2.service.IDispositivoService;
 
@@ -43,7 +44,9 @@ public class DispositivoService implements IDispositivoService{
 	@Override
 	public boolean remove(int id) {
 		try {
-			dispositivoRepository.deleteById(id);
+			Dispositivo dispositivo = dispositivoRepository.findById(id);
+			dispositivo.setActivo(false);
+			dispositivoRepository.save(dispositivo);
 			return true;
 		}catch (Exception e) {
 			return false;

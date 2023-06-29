@@ -20,6 +20,7 @@ public interface IEventoService {
 
 	Evento insertOrUpdate(Evento evento);
 	
+	public List<Evento> getEventosLuces();
 	public List<Evento> getEventosEstacionamiento();
 	public List<Evento> getByIdDispositivo(int id);
 }

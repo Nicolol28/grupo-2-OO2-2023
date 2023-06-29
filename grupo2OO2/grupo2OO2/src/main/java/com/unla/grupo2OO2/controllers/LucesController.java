@@ -6,9 +6,6 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,85 +22,83 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.unla.grupo2OO2.entities.Evento;
-import com.unla.grupo2OO2.entities.Dispositivo;
-import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
+import com.unla.grupo2OO2.entities.LucesInteligente;
 import com.unla.grupo2OO2.helpers.ViewRouteHelper;
-import com.unla.grupo2OO2.service.IDispositivoService;
-import com.unla.grupo2OO2.service.IEstacionamientoService;
 import com.unla.grupo2OO2.service.IEventoService;
-import com.unla.grupo2OO2.service.implementation.EstacionamientoService;
+import com.unla.grupo2OO2.service.ILucesService;
+import com.unla.grupo2OO2.entities.Evento;
 
 import org.modelmapper.ModelMapper;
 
 
 @Controller
 @RequestMapping("/")
-public class EstacionamientoController {
+public class LucesController {
 	
 	
 	@Autowired
-	@Qualifier("estacionamientoService")
-	private IEstacionamientoService estacionamientoService;
+	@Qualifier("lucesService")
+	private ILucesService lucesService;
 	
 	@Autowired
 	@Qualifier("eventoService")
 	private IEventoService eventoService;
 
-	@GetMapping("/EstacionamientoInteligente")
+	@GetMapping("/LucesInteligente")
 	public ModelAndView index() {
-		ModelAndView model = new ModelAndView(ViewRouteHelper.ESTACIONAMIENYO_INDEX);
+		ModelAndView model = new ModelAndView(ViewRouteHelper.LUCES_INDEX);
+		return model;
+
+	}
+	
+	
+	@GetMapping("/Luces")
+	public ModelAndView luces() {
+		ModelAndView model = new ModelAndView(ViewRouteHelper.LUCES_VIEW);
+		
+		model.addObject("luces", lucesService.getAll());
+		model.addObject("eventos", eventoService.getEventosLuces());
+		
 		return model;
 	}
 	
-	@GetMapping("/Estacionamiento")
-	public ModelAndView estacionamiento() {
-		ModelAndView model = new ModelAndView(ViewRouteHelper.ESTACIONAMIENTO_VIEW);
+	@GetMapping("/agregarLuces")
+	public String newLuces(Model model) {
+		model.addAttribute("luces", new LucesInteligente());
+		return ViewRouteHelper.LUCES_ADD;
+	}
+	
+	
+	@PostMapping("/DisLuces")
+	public RedirectView luces(@ModelAttribute("luces") LucesInteligente luces) {
 		
-		model.addObject("estacionamientos", estacionamientoService.getAll());
-		model.addObject("eventos", eventoService.getEventosEstacionamiento());
+		System.out.println(luces);
+		lucesService.insertOrUpdate(luces);
 		
-		return model;
+		return new RedirectView(ViewRouteHelper.LUCES);
 	}
 
-	
-	@GetMapping("/agregarEstacionamiento")
-	public String newEstacionamiento(Model model) {
-		model.addAttribute("estacionamiento", new EstacionamientoInteligente());
-		return ViewRouteHelper.ESTACIONAMIENTO_ADD;
-	}
-	
-	@PostMapping("/DisEstacionamiento")
-	public RedirectView estacionamiento(@ModelAttribute("estacionamiento") EstacionamientoInteligente estacionamiento) {
-		
-		System.out.println(estacionamiento);
-		estacionamientoService.insertOrUpdate(estacionamiento);
-		
-		return new RedirectView(ViewRouteHelper.ESTACIONAMIENTO);
-	}
-	
-	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/agregarEvento")
+    @GetMapping("/agregarEventoLuces")
     public ModelAndView agregarEvento(){
-       ModelAndView mAV = new ModelAndView("Eventos/agregarEvento");
+       ModelAndView mAV = new ModelAndView("luces/agregarEvento");
        Evento evento = new Evento();
-       mAV.addObject("estacionamientos", estacionamientoService.getAll());
+       mAV.addObject("estacionamientos", lucesService.getAll());
        mAV.addObject("evento", evento);
        return mAV;
     }
 	
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/agregarEvento")
+    @PostMapping("/agregarEventoLuces")
     public RedirectView agregarEvento(@RequestParam("dispositivoId") int dispositivoId,
     		@RequestParam("fecha") LocalDate fecha,
     		@RequestParam("horaDesde") LocalTime horaDesde,
     		@RequestParam("horaHasta") LocalTime horaHasta,
     		@RequestParam("descripcion") String descripcion){
-    	EstacionamientoInteligente dispositivo = estacionamientoService.findById(dispositivoId); 
+    	LucesInteligente dispositivo = lucesService.findById(dispositivoId); 
     	if (dispositivo != null) {      
-    		estacionamientoService.agregarEvento(dispositivo, fecha, horaDesde, horaHasta, descripcion);
+    		lucesService.agregarEvento(dispositivo, fecha, horaDesde, horaHasta, descripcion);
     	}
-    	return new RedirectView(ViewRouteHelper.ESTACIONAMIENTO);
+    	return new RedirectView(ViewRouteHelper.LUCES);
     }
 }

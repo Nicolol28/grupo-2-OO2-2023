@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.unla.grupo2OO2.entities.Dispositivo;
 import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
 import com.unla.grupo2OO2.entities.Evento;
+import com.unla.grupo2OO2.entities.LucesInteligente;
 import com.unla.grupo2OO2.repositories.IEventoRepository;
 import com.unla.grupo2OO2.service.IEventoService;
 
@@ -65,6 +66,18 @@ public class EventoService implements IEventoService{
 		 List<Evento> eventosEst = new ArrayList<>();
 		 for(int i=0;i<eventos.size();i++) {
 			 if(eventos.get(i).getDispositivo() instanceof EstacionamientoInteligente) {
+				 eventosEst.add(eventos.get(i));
+			 }
+		 }
+		 return eventosEst;
+	 }
+	 
+	 @Override
+	 public List<Evento> getEventosLuces() {
+		 List<Evento> eventos = eventoRepository.findAll();
+		 List<Evento> eventosEst = new ArrayList<>();
+		 for(int i=0;i<eventos.size();i++) {
+			 if(eventos.get(i).getDispositivo() instanceof LucesInteligente) {
 				 eventosEst.add(eventos.get(i));
 			 }
 		 }

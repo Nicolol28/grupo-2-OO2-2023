@@ -47,7 +47,9 @@ public class EstacionamientoService implements IEstacionamientoService{
 	@Override
 	public boolean remove(int id) {
 		try {
-			estacionamientoRepository.deleteById(id);
+			EstacionamientoInteligente estacionamiento = estacionamientoRepository.findById(id);
+			estacionamiento.setActivo(false);
+			estacionamientoRepository.save(estacionamiento);
 			return true;
 		}catch (Exception e) {
 			return false;
