@@ -73,13 +73,13 @@ public class EstacionamientoController {
 		return model;
 	}
 
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/agregarEstacionamiento")
 	public String newEstacionamiento(Model model) {
 		model.addAttribute("estacionamiento", new EstacionamientoInteligente());
 		return ViewRouteHelper.ESTACIONAMIENTO_ADD;
 	}
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/DisEstacionamiento")
 	public RedirectView estacionamiento(@ModelAttribute("estacionamiento") EstacionamientoInteligente estacionamiento) {
 		

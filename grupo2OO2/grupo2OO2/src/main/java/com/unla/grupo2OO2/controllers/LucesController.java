@@ -71,13 +71,14 @@ public class LucesController {
 		return model;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/agregarLuces")
 	public String newLuces(Model model) {
 		model.addAttribute("luces", new LucesInteligente());
 		return ViewRouteHelper.LUCES_ADD;
 	}
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/DisLuces")
 	public RedirectView luces(@ModelAttribute("luces") LucesInteligente luces) {
 		
