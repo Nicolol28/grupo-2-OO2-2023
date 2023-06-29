@@ -60,7 +60,14 @@ public class EstacionamientoController {
 	public ModelAndView estacionamiento() {
 		ModelAndView model = new ModelAndView(ViewRouteHelper.ESTACIONAMIENTO_VIEW);
 		
-		model.addObject("estacionamientos", estacionamientoService.getAll());
+		List<EstacionamientoInteligente> est = new ArrayList<EstacionamientoInteligente>();
+		
+		for(int i=0; i<estacionamientoService.getAll().size(); i++) {
+			if(estacionamientoService.getAll().get(i).isActivo()==true) {
+				est.add(estacionamientoService.getAll().get(i));
+			}
+		}
+		model.addObject("estacionamientos", est);
 		model.addObject("eventos", eventoService.getEventosEstacionamiento());
 		
 		return model;
@@ -82,6 +89,29 @@ public class EstacionamientoController {
 		return new RedirectView(ViewRouteHelper.ESTACIONAMIENTO);
 	}
 	
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/borrarDispositivoEstacionamiento")
+	public ModelAndView borrar() {
+		ModelAndView model = new ModelAndView(ViewRouteHelper.ESTACIONAMIENYO_DELETE);
+		List<EstacionamientoInteligente> dis = new ArrayList<EstacionamientoInteligente>();
+		
+		for(int i=0; i<estacionamientoService.getAll().size(); i++) {
+			if(estacionamientoService.getAll().get(i).isActivo()==true) {
+				dis.add(estacionamientoService.getAll().get(i));
+			}
+		}
+		
+		model.addObject("estacionamientos", dis);
+		return model;
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/borrarDispositivoEstacionamiento")
+    public RedirectView borrar(@RequestParam("dispositivoId") int dispositivoId){
+		estacionamientoService.remove(dispositivoId);
+    	return new RedirectView(ViewRouteHelper.ESTACIONAMIENTO);
+    }
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/agregarEvento")

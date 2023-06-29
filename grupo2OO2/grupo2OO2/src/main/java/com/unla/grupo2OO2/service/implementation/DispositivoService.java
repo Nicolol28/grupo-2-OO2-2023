@@ -23,13 +23,14 @@ public class DispositivoService implements IDispositivoService{
 
 	@Override
 	public List<Dispositivo> getAll() {
-		return null;
+		return dispositivoRepository.findAll();
 	}
 
 	@Override
 	public Dispositivo findById(int id) {
 		return dispositivoRepository.findById(id);
 	}
+	
 
 	@Override
 	public Dispositivo findByNombre(String name) {

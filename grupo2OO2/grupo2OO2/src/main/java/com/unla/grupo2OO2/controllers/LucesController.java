@@ -26,6 +26,8 @@ import com.unla.grupo2OO2.entities.LucesInteligente;
 import com.unla.grupo2OO2.helpers.ViewRouteHelper;
 import com.unla.grupo2OO2.service.IEventoService;
 import com.unla.grupo2OO2.service.ILucesService;
+import com.unla.grupo2OO2.entities.Dispositivo;
+import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
 import com.unla.grupo2OO2.entities.Evento;
 
 import org.modelmapper.ModelMapper;
@@ -56,6 +58,13 @@ public class LucesController {
 	public ModelAndView luces() {
 		ModelAndView model = new ModelAndView(ViewRouteHelper.LUCES_VIEW);
 		
+		List<LucesInteligente> luz = new ArrayList<LucesInteligente>();
+
+		for(int i=0; i<lucesService.getAll().size(); i++) {
+			if(lucesService.getAll().get(i).isActivo()==true) {
+				luz.add(lucesService.getAll().get(i));
+			}
+		}
 		model.addObject("luces", lucesService.getAll());
 		model.addObject("eventos", eventoService.getEventosLuces());
 		
@@ -78,6 +87,30 @@ public class LucesController {
 		return new RedirectView(ViewRouteHelper.LUCES);
 	}
 
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/borrarDispositivoLuces")
+	public ModelAndView borrar() {
+		ModelAndView model = new ModelAndView(ViewRouteHelper.LUCES_DELETE);
+		List<LucesInteligente> dis = new ArrayList<LucesInteligente>();
+		
+		for(int i=0; i<lucesService.getAll().size(); i++) {
+			if(lucesService.getAll().get(i).isActivo()==true) {
+				dis.add(lucesService.getAll().get(i));
+			}
+		}
+		
+		model.addObject("luces", dis);
+		return model;
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/borrarDispositivoLuces")
+    public RedirectView borrar(@RequestParam("dispositivoId") int dispositivoId){
+		lucesService.remove(dispositivoId);
+    	return new RedirectView(ViewRouteHelper.LUCES);
+    }
+	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/agregarEventoLuces")
     public ModelAndView agregarEvento(){

@@ -66,7 +66,9 @@ public class EventoService implements IEventoService{
 		 List<Evento> eventosEst = new ArrayList<>();
 		 for(int i=0;i<eventos.size();i++) {
 			 if(eventos.get(i).getDispositivo() instanceof EstacionamientoInteligente) {
-				 eventosEst.add(eventos.get(i));
+				 if(eventos.get(i).getDispositivo().isActivo()==true) {
+					 eventosEst.add(eventos.get(i));
+				 }
 			 }
 		 }
 		 return eventosEst;
@@ -75,13 +77,15 @@ public class EventoService implements IEventoService{
 	 @Override
 	 public List<Evento> getEventosLuces() {
 		 List<Evento> eventos = eventoRepository.findAll();
-		 List<Evento> eventosEst = new ArrayList<>();
+		 List<Evento> eventosLuz = new ArrayList<>();
 		 for(int i=0;i<eventos.size();i++) {
 			 if(eventos.get(i).getDispositivo() instanceof LucesInteligente) {
-				 eventosEst.add(eventos.get(i));
+				 if(eventos.get(i).getDispositivo().isActivo()==true) {
+					 eventosLuz.add(eventos.get(i));
+				 }
 			 }
 		 }
-		 return eventosEst;
+		 return eventosLuz;
 	 }
 	 
 	 @Override
