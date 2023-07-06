@@ -5,10 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @Getter @Setter @NoArgsConstructor
 public class Administrador extends Persona {
 	
+	public Administrador() {
+		super();
+	}
 	private int nroAdministrador;
 
 }

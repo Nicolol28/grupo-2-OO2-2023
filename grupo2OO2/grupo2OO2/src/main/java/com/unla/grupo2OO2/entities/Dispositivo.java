@@ -21,7 +21,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Dispositivo {
 	@Id
@@ -55,6 +56,14 @@ public class Dispositivo {
 		super();
 		this.nombre = nombre;
 		this.activo = activo;
+	}
+	
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+		
+	}
+	public Dispositivo() {
+		super();
 	}
 
 	

@@ -1,26 +1,10 @@
 package com.unla.grupo2OO2.models;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.ArrayList;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+@Getter
+@Setter
 public class DispositivoModel {
 	
 	private int id;
@@ -41,6 +25,10 @@ public class DispositivoModel {
 		super();
 		this.setNombre(nombre);
 		this.setActivo(activo);
+	}
+
+	public DispositivoModel() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
