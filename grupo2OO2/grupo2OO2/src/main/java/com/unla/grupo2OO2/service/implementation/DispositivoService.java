@@ -1,5 +1,6 @@
 package com.unla.grupo2OO2.service.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -8,11 +9,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.grupo2OO2.entities.Dispositivo;
-import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
+import com.unla.grupo2OO2.entities.DispositivoTemperatura;
+import com.unla.grupo2OO2.models.SensorTemperaturaModel;
 import com.unla.grupo2OO2.repositories.IDispositivoRepository;
 import com.unla.grupo2OO2.service.IDispositivoService;
 
-@Service
+@Service("dispositivoService")
 public class DispositivoService implements IDispositivoService{
 	
 	@Autowired
@@ -20,6 +22,17 @@ public class DispositivoService implements IDispositivoService{
 	private IDispositivoRepository dispositivoRepository;
 
 	private ModelMapper modelMapper = new ModelMapper();
+	
+	
+	
+	@Override
+	public List<SensorTemperaturaModel> finBySensor() {
+		List<SensorTemperaturaModel> sensores = new ArrayList<>();
+		for (DispositivoTemperatura sensor : dispositivoRepository.findBySensor()) {
+			sensores.add(modelMapper.map(sensor, SensorTemperaturaModel.class));
+		}
+		return sensores;
+	}
 
 	@Override
 	public List<Dispositivo> getAll() {
@@ -29,8 +42,7 @@ public class DispositivoService implements IDispositivoService{
 	@Override
 	public Dispositivo findById(int id) {
 		return dispositivoRepository.findById(id);
-	}
-	
+	}	
 
 	@Override
 	public Dispositivo findByNombre(String name) {
@@ -53,5 +65,6 @@ public class DispositivoService implements IDispositivoService{
 			return false;
 		}
 	}
+		
 
 }

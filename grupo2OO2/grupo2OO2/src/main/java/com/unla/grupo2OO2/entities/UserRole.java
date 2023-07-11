@@ -16,11 +16,10 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter
 @Table(name="user_role", uniqueConstraints=@UniqueConstraint(columnNames= {"role", "user_id"}))
 public class UserRole {
 
@@ -42,6 +41,10 @@ public class UserRole {
 	@Column(name="updatedat")
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+	
+	public UserRole() {
+		
+	}
 
 	public UserRole(int id, User user, String role) {
 		this.id = id;

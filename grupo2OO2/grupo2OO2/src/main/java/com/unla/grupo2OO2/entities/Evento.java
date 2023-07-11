@@ -14,14 +14,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class Evento {
 	
 	@Id
@@ -39,23 +34,82 @@ public class Evento {
 	
 	private LocalTime horaDesde;
 	
-	private LocalTime horaHasta;
 	
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+	
+	
 
-	public Evento(int idEvento, String descripcion, Dispositivo dispositivo, LocalDate dia, LocalTime horaDesde,
-			LocalTime horaHasta) {
-		super();
+	public int getIdEvento() {
+		return idEvento;
+	}
+
+	public void setIdEvento(int idEvento) {
 		this.idEvento = idEvento;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Dispositivo getDispositivo() {
+		return dispositivo;
+	}
+
+	public void setDispositivo(Dispositivo dispositivo) {
+		this.dispositivo = dispositivo;
+	}
+
+	public LocalDate getDia() {
+		return dia;
+	}
+
+	public void setDia(LocalDate dia) {
+		this.dia = dia;
+	}
+
+	public LocalTime getHoraDesde() {
+		return horaDesde;
+	}
+
+	public void setHoraDesde(LocalTime horaDesde) {
+		this.horaDesde = horaDesde;
+	}
+
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public Evento(String descripcion, Dispositivo dispositivo, LocalDate dia, LocalTime horaDesde) {
+		super();
 		this.descripcion = descripcion;
 		this.dispositivo = dispositivo;
 		this.dia = dia;
 		this.horaDesde = horaDesde;
-		this.horaHasta = horaHasta;
+	}
+
+	public Evento() {
+		// TODO Auto-generated constructor stub
 	}
 	
 }

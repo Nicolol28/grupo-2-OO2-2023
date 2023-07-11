@@ -16,13 +16,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Dispositivo {
 	@Id
@@ -44,6 +39,49 @@ public class Dispositivo {
 
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+	
+
+	public int getId() {
+		return id;
+	}
+	
+	
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public List<Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
 
 	public Dispositivo(int id, String nombre, boolean activo) {
 		super();

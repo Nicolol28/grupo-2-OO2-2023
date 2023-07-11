@@ -3,7 +3,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import com.unla.grupo2OO2.entities.Dispositivo;
 import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
 
 
@@ -16,5 +15,5 @@ public interface IEstacionamientoService {
 
 	public boolean remove(int id);
     
-    public EstacionamientoInteligente agregarEvento(EstacionamientoInteligente dispositivo, LocalDate fecha, LocalTime horaDesde, LocalTime horaHasta, String descripcion);
+    public EstacionamientoInteligente agregarEvento(EstacionamientoInteligente dispositivo, LocalDate fecha, LocalTime horaDesde,String descripcion);
 }

@@ -27,17 +27,13 @@ public class SecurityConfiguration {
 		auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 
+	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests()
-				.requestMatchers("/css/*", "/imgs/*", "/js/*","/css/styles","/css/styles","/assets/*","/js/datables-simple-demo","/js/scripts").permitAll()
-				.anyRequest().authenticated()
-			.and()
-				.formLogin().loginPage("/login").loginProcessingUrl("/loginprocess")
-				.usernameParameter("username").passwordParameter("password")
-				.defaultSuccessUrl("/loginsuccess").permitAll()
-			.and()
-				.logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();
+		
+		http.authorizeHttpRequests().requestMatchers("/css/*", "/imgs/*", "/js/*","/assets/demo/*","/assets/img/*").permitAll().anyRequest().authenticated()
+			.and().formLogin().loginPage("/login").loginProcessingUrl("/loginprocess").usernameParameter("username").passwordParameter("password")
+			.defaultSuccessUrl("/loginsuccess").permitAll().and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout").permitAll();
 		return http.build();
 	}
 

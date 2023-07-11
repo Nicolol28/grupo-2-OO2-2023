@@ -1,7 +1,5 @@
 package com.unla.grupo2OO2.controllers;
 import java.util.List;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo2OO2.entities.Dispositivo;
-import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
 import com.unla.grupo2OO2.helpers.ViewRouteHelper;
 import com.unla.grupo2OO2.service.IDispositivoService;
 import com.unla.grupo2OO2.service.IEventoService;
@@ -33,13 +30,31 @@ public class DispositivoController {
 	@Qualifier("eventoService")
 	private IEventoService eventoService;
 	
-	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/DispositivosInteligentes")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView(ViewRouteHelper.DISPOSITIVO_INDEX);
 
 		return model;
 	}
+	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@GetMapping("/ConsultaEventosPorDispositivo")
+	public ModelAndView consulta() {
+		
+		ModelAndView model = new ModelAndView(ViewRouteHelper.DISPOSITIVO_EV_X_DISPO);
+		
+
+		return model;
+	}
+	  @PostMapping("/ViewConsulta")
+	    public ModelAndView viewConsulta(@RequestParam("dispositivoId") int dispositivoId){
+
+		  ModelAndView model = new ModelAndView(ViewRouteHelper.DISPOSITIVO_EV_VIEW);
+		  model.addObject("eventos",eventoService.getByIdDispositivo(dispositivoId));
+		  
+		  return model;
+	    }
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/borrarDispositivo")

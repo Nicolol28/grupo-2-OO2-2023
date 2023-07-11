@@ -1,16 +1,6 @@
 package com.unla.grupo2OO2.entities;
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.ForeignKey;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,5 +21,22 @@ public class LucesInteligente extends Dispositivo{
 		this.nroAula = nroAula;
 		this.ocupada = ocupada;
 	}
+	public LucesInteligente() {
+		
+	}
+	public int getNroAula() {
+		return nroAula;
+	}
+	public void setNroAula(int nroAula) {
+		this.nroAula = nroAula;
+	}
+	public boolean isOcupada() {
+		return ocupada;
+	}
+	public void setOcupada(boolean ocupada) {
+		this.ocupada = ocupada;
+	}
+	
+	
 	
 }

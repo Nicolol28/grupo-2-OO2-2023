@@ -6,35 +6,22 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo2OO2.entities.Evento;
-import com.unla.grupo2OO2.entities.Dispositivo;
 import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
 import com.unla.grupo2OO2.helpers.ViewRouteHelper;
-import com.unla.grupo2OO2.service.IDispositivoService;
 import com.unla.grupo2OO2.service.IEstacionamientoService;
 import com.unla.grupo2OO2.service.IEventoService;
-import com.unla.grupo2OO2.service.implementation.EstacionamientoService;
-
-import org.modelmapper.ModelMapper;
 
 
 @Controller
@@ -128,11 +115,10 @@ public class EstacionamientoController {
     public RedirectView agregarEvento(@RequestParam("dispositivoId") int dispositivoId,
     		@RequestParam("fecha") LocalDate fecha,
     		@RequestParam("horaDesde") LocalTime horaDesde,
-    		@RequestParam("horaHasta") LocalTime horaHasta,
     		@RequestParam("descripcion") String descripcion){
     	EstacionamientoInteligente dispositivo = estacionamientoService.findById(dispositivoId); 
     	if (dispositivo != null) {      
-    		estacionamientoService.agregarEvento(dispositivo, fecha, horaDesde, horaHasta, descripcion);
+    		estacionamientoService.agregarEvento(dispositivo, fecha, horaDesde, descripcion);
     	}
     	return new RedirectView(ViewRouteHelper.ESTACIONAMIENTO);
     }

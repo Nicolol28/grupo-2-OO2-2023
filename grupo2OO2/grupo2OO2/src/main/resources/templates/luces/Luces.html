@@ -64,7 +64,6 @@
 										<th class="form-floating mb-3 mb-md-0">Descripcion</th>
 										<th class="form-floating mb-3 mb-md-0">Dia</th>
 										<th class="form-floating mb-3 mb-md-0">Hora Desde</th>
-										<th class="form-floating mb-3 mb-md-0">Hora Hasta</th>
 										<th class="form-floating mb-3 mb-md-0">ID de LucesInteligente</th>
 									</tr>
 								</thead>
@@ -88,11 +87,6 @@
 										<td>
 											<ul>
 												<li th:each="evento : ${luz.eventos}" th:utext="${evento.horaDesde}"></li>
-											</ul>
-										</td>
-										<td>
-											<ul>
-												<li th:each="evento : ${luz.eventos}" th:utext="${evento.horaHasta}"></li>
 											</ul>
 										</td>
 										<td>

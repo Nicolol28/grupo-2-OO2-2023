@@ -1,6 +1,5 @@
 package com.unla.grupo2OO2.service.implementation;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.unla.grupo2OO2.entities.Dispositivo;
+import com.unla.grupo2OO2.entities.DispositivoTemperatura;
 import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
 import com.unla.grupo2OO2.entities.Evento;
 import com.unla.grupo2OO2.entities.LucesInteligente;
@@ -48,8 +48,8 @@ public class EventoService implements IEventoService{
 
 	@Override
 	public Evento insertOrUpdate(Evento evento) {
-		// TODO Auto-generated method stub
-		return ((IEventoService) eventoRepository).insertOrUpdate(evento);
+	
+		return eventoRepository.save(evento);
 	}
 	
 	
@@ -86,6 +86,20 @@ public class EventoService implements IEventoService{
 			 }
 		 }
 		 return eventosLuz;
+	 }
+	 
+	 @Override
+	 public List<Evento> getEventosTemperatura() {
+		 List<Evento> eventos = eventoRepository.findAll();
+		 List<Evento> eventosTemperatura = new ArrayList<>();
+		 for(int i=0;i<eventos.size();i++) {
+			 if(eventos.get(i).getDispositivo() instanceof DispositivoTemperatura) {
+				 if(eventos.get(i).getDispositivo().isActivo()==true) {
+					 eventosTemperatura.add(eventos.get(i));
+				 }
+			 }
+		 }
+		 return eventosTemperatura;
 	 }
 	 
 	 @Override

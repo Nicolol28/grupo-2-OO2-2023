@@ -7,16 +7,11 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-
-import com.unla.grupo2OO2.entities.Dispositivo;
 import com.unla.grupo2OO2.entities.EstacionamientoInteligente;
 import com.unla.grupo2OO2.entities.Evento;
 import com.unla.grupo2OO2.repositories.IEstacionamientoRepository;
 import com.unla.grupo2OO2.service.IEstacionamientoService;
-
-import lombok.AllArgsConstructor;
 
 
 @Service("estacionamientoService")
@@ -57,7 +52,7 @@ public class EstacionamientoService implements IEstacionamientoService{
 	}
 
 	@Override
-    public EstacionamientoInteligente agregarEvento(EstacionamientoInteligente dispositivo,LocalDate fecha,LocalTime horaDesde, LocalTime horaHasta, String descripcion) {
+    public EstacionamientoInteligente agregarEvento(EstacionamientoInteligente dispositivo,LocalDate fecha,LocalTime horaDesde, String descripcion) {
         //compruevo que el dispositivo no sea null
 		if (dispositivo != null) {
 			//ya que no lo es lo busco por id
@@ -75,7 +70,6 @@ public class EstacionamientoService implements IEstacionamientoService{
                 evento.setDispositivo(dispositivo);
                 evento.setDia(fecha);
                 evento.setHoraDesde(horaDesde);
-                evento.setHoraHasta(horaHasta);
                 
                 //agrego el evento a la lista
                 eventos.add(evento);

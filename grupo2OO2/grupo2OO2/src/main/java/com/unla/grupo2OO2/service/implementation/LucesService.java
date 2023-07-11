@@ -55,7 +55,7 @@ public class LucesService implements ILucesService{
 	}
 
 	@Override
-    public LucesInteligente agregarEvento(LucesInteligente dispositivo,LocalDate fecha,LocalTime horaDesde, LocalTime horaHasta, String descripcion) {
+    public LucesInteligente agregarEvento(LucesInteligente dispositivo,LocalDate fecha,LocalTime horaDesde, String descripcion) {
        
 	if (dispositivo != null) {			
        	LucesInteligente dispositivoExistente = lucesRepository.findById(dispositivo.getId());        
@@ -67,7 +67,6 @@ public class LucesService implements ILucesService{
                 evento.setDispositivo(dispositivo);
                 evento.setDia(fecha);
                 evento.setHoraDesde(horaDesde);
-                evento.setHoraHasta(horaHasta);
                 
                 
                 eventos.add(evento);

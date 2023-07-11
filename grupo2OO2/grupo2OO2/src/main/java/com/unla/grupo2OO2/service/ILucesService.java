@@ -18,6 +18,6 @@ public interface ILucesService {
 	public boolean remove(int id);
 
     
-    public LucesInteligente agregarEvento(LucesInteligente dispositivo, LocalDate fecha, LocalTime horaDesde, LocalTime horaHasta, String descripcion);
+    public LucesInteligente agregarEvento(LucesInteligente dispositivo, LocalDate fecha, LocalTime horaDesde, String descripcion);
 
 }

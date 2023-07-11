@@ -15,11 +15,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter 
 public class User {
 
 	@Id
@@ -46,6 +45,9 @@ public class User {
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
 	private Set<UserRole> userRoles = new HashSet<>();
 
+	public User() {
+		
+	}
 	public User(String username, String password, boolean enabled) {
 		this.username = username;
 		this.password = password;
